@@ -26,3 +26,11 @@ QuranVoice is a simple web project that plays a beautiful Quran recitation when 
 3. Enjoy listening to the Quran recitation 🌿
 
 ## 📁 Example Structure
+QuranVoice/
+│
+├── home.html
+├── Quran.mp4
+└── README.md
+
+##🔗 Link Wap
+https://tar2000x.github.io/QuranVoice/home.html
