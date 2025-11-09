@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> QuranVoice </title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      background: #000; /* خلفية سوداء صافية */
+    }
+
+    /* الطبقة الشفافة للنص */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000; /* نفس الخلفية السوداء */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 1.2s ease;
+      z-index: 5;
+    }
+
+    #message {
+      text-align: center;
+      color: white; /* النص أبيض واضح */
+      font-size: 22px;
+      font-family: "Tajawal", sans-serif;
+      background: rgba(0, 0, 0, 0.35); /* خلفية للنص فقط */
+      padding: 18px 25px;
+      border-radius: 10px;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    #message small {
+      display: block;
+      margin-top: 6px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* الفيديو */
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 80%;  /* حجم الفيديو 80% */
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      display: none;
+    }
+
+    /* تأثير fade in للنص */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <video id="myVideo" loop playsinline>
+    <source src="Quran.mp4" type="video/mp4">
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <div id="overlay">
+    <div id="message">
+      إذا كنت تريد سماع الصوت اضغط في أي مكان 🎧🤍
+      <small>If you want to hear the sound, tap anywhere.</small>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const overlay = document.getElementById('overlay');
+
+    document.body.addEventListener('click', async () => {
+      try {
+        // تلاشي النص والخلفية
+        overlay.style.opacity = '0';
+
+        setTimeout(async () => {
+          overlay.remove();
+          video.style.display = "block";
+          video.currentTime = 0;
+          video.muted = false;
+          await video.play();
+        }, 1200);
+      } catch (err) {
+        console.log("حدث خطأ أثناء تشغيل الفيديو:", err);
+      }
+    }, { once: true });
+  </script>
+</body>
+</html>
