@@ -32,5 +32,5 @@ QuranVoice/
 ├── Quran.mp4
 └── README.md
 
-## 🔗 Link Wap
+## 🔗 Link Wep
 https://tar2000x.github.io/QuranVoice/home.html
